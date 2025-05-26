@@ -37,6 +37,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-default">Add Name and Color</button>
+
         </form>
 
         @if ($nameColors->isNotEmpty())
