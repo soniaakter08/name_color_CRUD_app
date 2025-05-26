@@ -27,7 +27,7 @@ const FavoriteWord = () => {
         <ul>
           {favorites.map((word) => (
             <li key={word.id}>
-              <strong>{word.english}</strong> = {word.finnish}
+              <strong>{word.finnish}</strong> = {word.english}
               {word.example && <em>{word.example}</em>}
             </li>
           ))}

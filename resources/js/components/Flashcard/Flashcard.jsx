@@ -28,8 +28,8 @@ const currentWords = words.slice(currentPage * wordsPerPage, (currentPage + 1) *
       const fetched = response.data.words || response.data;
   
       const formatted = fetched.map((w) => ({
-        english: w.english,
         finnish: w.finnish,
+        english: w.english,
         example: w.example,
       }));
   
@@ -47,7 +47,7 @@ const currentWords = words.slice(currentPage * wordsPerPage, (currentPage + 1) *
   const fetchFavorites = async () => {
     try {
       const response = await axios.get("/api/words");
-      const favWords = response.data.map((w) => w.english);
+      const favWords = response.data.map((w) => w.finnish);
       setFavorites(favWords);
     } catch (err) {
       console.error("Failed to load favorites:", err);
@@ -58,13 +58,14 @@ const currentWords = words.slice(currentPage * wordsPerPage, (currentPage + 1) *
   const saveFavorite = async (wordObj) => {
     try {
       await axios.post("/api/words", {
-        english: wordObj.english,
         finnish: wordObj.finnish,
+        english: wordObj.english,
+        
         example: wordObj.example || "",
       });
       
   
-      setFavorites((prev) => [...prev, wordObj.english]);
+      setFavorites((prev) => [...prev, wordObj.finnish]);
     } catch (err) {
       console.error("Failed to save word:", err);
     }
@@ -101,10 +102,10 @@ return (
                 onClick={() => toggleFlip(realIndex)}
               >
                 <div className="flashcard-inner">
-                  <div className="flashcard-front">{wordObj.english}</div>
+                  <div className="flashcard-front">{wordObj.finnish}</div>
                   <div className="flashcard-back">
   <div className="finnish-word">
-    <strong>Finnish:</strong> {wordObj.finnish}
+    <strong>English:</strong> {wordObj.english}
   </div>
   <div className="example-sentence">
     <em>{wordObj.example}</em>
@@ -117,9 +118,9 @@ return (
                     e.stopPropagation();
                     saveFavorite(wordObj);
                   }}
-                  disabled={favorites.includes(wordObj.english)}
+                  disabled={favorites.includes(wordObj.finnish)}
                 >
-                  {favorites.includes(wordObj.english) ? "Saved" : "Favorite"}
+                  {favorites.includes(wordObj.finnish) ? "Saved" : "Favorite"}
                 </button>
               </div>
             );
