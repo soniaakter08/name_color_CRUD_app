@@ -1,4 +1,4 @@
-# Finnish Flashcards App
+# Name Color Management & Finnish Flashcards App
 
 This is a full-stack React + Laravel app for learning Finnish vocabulary. It allows users to:
 
